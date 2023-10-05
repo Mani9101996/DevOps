@@ -1,0 +1,23 @@
+1. Go to https://aws.amazon.com
+2. Click on "Create an AWS Account"
+3. Enter Email address, Password, Confirm password & Account name. Click 
+Continue when done.
+4. Select Account type (Click on Personal)
+5. Fill in the listed fields & click on acknowledge, then click Create Account and 
+Continue.
+6. Enter your credit/debit card details
+7. Amazon will confirm your identity by sending you a text message or giving 
+you a voice call. Fill in the details and click on Send SMS
+8. You will receive a verification code either via text message or voice call, 
+depending on what you selected in the previous step. Enter the code and select 
+Verify Code.
+9. Once the code has been entered in, you will be shown ‘Your identity has been 
+verified successfully’.
+10. There are 3 Support Plans you can choose. Click on Free.
+11. That’s it! Your Amazon AWS Free Tier account has now been created.
+12. Wait for one hour.
+13. You are now ready to login to the AWS console. You can click on ‘Sign in to 
+the Console’.
+14. Enter the email address that you used for your Free Tier account. Click next
+and then enter in your password.
+15. You have now successfully signed in to the AWS Account.
