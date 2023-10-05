@@ -1,0 +1,654 @@
+****DevOps*****
+• Definition of SDLC
+• Purpose of SDLC
+• General Phases of SDLC
+• Various Models of SDLC
+• About Waterfall SDLC Model
+• Waterfall SDLC Model - Advantages
+• Waterfall SDLC Model - Disadvantages
+• About Agile SDLC Model
+• Agile SDLC Model - Advantages
+• Introduction to DevOps
+• History of DevOps
+• What is DevOps
+• Definition of DevOps
+• Fundamental Principles of DevOps
+• Benefits of DevOps
+• After Implementation
+• DevOps Roles and Responsibilities
+• Continuous Integration in DevOps
+------------------------------------------------------------------------------------
+*****EC2*****
+• Introduction to EC2
+• EC2 Dashboard Overview
+• What is Elastic
+• How scaling works
+• Types of Operating Systems
+• Windows and its versions
+• Unix and its flavors
+• Linux and its flavors
+• About Amazon Machine Images (AMI)
+• Different types of AMI’s
+• How to create AWS AMI
+• How to create a Key Pairs
+• Instance types
+• What is EBS (Elastic Block Store)
+• Download a key pair
+• Access EC2 Windows instances
+• Access EC2 Linux instances
+• Putty and PuttyGen
+• MobaXterm tool
+• Browser Access
+• What is pem file
+• What is ppk file
+• What are default usernames to connect 
+AMI’s
+• How to reboot the Instance
+• How to stop instance
+• How to terminate instance
+• Protection from Accidental termination
+• Recover lost keys
+• Linux Web Server
+• Windows Web Server
+• Security Groups
+------------------------------------------------------------------------------------
+*****AWS Cloud*****
+• What is Cloud Computing
+• What is AWS Cloud
+• How AWS Cloud is being operated
+• Cloud Advantages
+• AWS Account Creation
+• Free Tier AWS
+• AWS Regions
+• AWS Availability Zones
+• AWS Services
+• AWS Console Overview 
+------------------------------------------------------------------------------------
+*****Unix/Linux*****
+• Introduction to Unix/Linux
+• Unix flavors
+• Linux Flavors
+• Why Linux?
+• Advantages of Unix/Linux
+• Architecture of Linux
+• File system hierarchy
+• cat (create & append file)
+• touch (create blank file)
+• nano (create & edit file)
+• vi/vim (create & edit file)
+• ls (list) (-a, -la)
+• cd (change directory)
+• pwd (print working directory)
+• mkdir (create directory, multiple)
+• cp (copy)
+• mv (move)
+• mv (rename)
+• rm (remove file)
+• tree (see in tree structure)
+• rm -rf(remove directory & recursive)
+• grep (pick & print)
+• less (see output)
+• head (see top 10 lines)
+• tail (see last 10 lines)
+• sort (display in Alphabetic/Numeric 
+order)
+• User creation
+• Group creation
+• Soft Link (shortcut)
+• Hard Link (backup)
+• tar (to pack)
+• gz (to compress)
+• yum (to install)
+• wget (to download)
+• File/Directory Permissions:
+• chmod (permissions)
+• chown (owner)
+• chgrp (group)
+• hostname (to see hostname)
+• ifconfig (to get ip address)
+• cat /etc/*rele* (to get os version)
+• yum commands
+• rpm commands
+• service commands
+• chkconfig commands
+• Redirection (redirecting output)
+• which (to see package installed or not)
+• sudo (to get root privileges)
+• whoami (to see user)
+• find commands
+• User Management
+• Group management
+• SSH Connection
+• SUDO Permissions
+• Password less SSH Connection
+• Access Server as normal user
+• Managing User permissions
+• Generating SSH Keys
+• Public vs Private keys
+------------------------------------------------------------------------------------
+*****Git*****
+• Source code management
+• Version control system/Revision 
+control system
+• SCM tools
+• Repository/Depot
+• Server
+• Work space/Work dir/Work tree
+• Branch/Trunk/Code line 
+• Commit/Check-in
+• Version/Version-ID/Commit-ID
+• Tag
+• Advantages of Git
+• Git Snapshots
+• Work space
+• Staging area
+• Buffer area
+• Repository (Local/non-bare)
+• Repository (Central/bare)
+• Installation & configuration
+• Git add
+• Git commit
+• Git log
+• Git push
+• Git status
+• Git ignore
+• Git branch
+• Git checkout
+• git merge 
+• Git Snapshots
+• Git conflict
+• Git stash
+• Git reset
+• Git revert
+• Repository (Central/bare)
+• Git remove
+• Git clean
+• Create files in GitHub
+• Clone GitHub Repository
+• Pull changes from GitHub 
+• Push changes to GitHub Repository
+• Git tag
+• Git fetch
+• Git diff
+• Git cherry-pick
+• Git hub
+• Role of Git in Real Time
+• Git installation on Windows and Screen 
+shots
+• Git installation on Linux
+• Git Architecture
+• What is Git Repository
+• Git with Local Repositories
+• Git with Remote Repositories
+• git config command usage
+• Setup git repository using git init
+• Git Making Changes
+• git status color coding system
+• Exercises on adding single files, 
+multiple files commits
+• Committing Changes in one go
+• Git History - log and show
+• View all commit logs
+• View only latest commit logs
+• git show command
+• Comparing git project files from 
+working area with Local Repo using git 
+diff
+• Git diff –staged
+• git remote commands
+• Introduction to GitHub Repository
+• Push changes to GitHub Repository
+• Create Account in GitHub
+• Create Project Repository in GitHub
+• Public Repository
+• Private Repositor
+------------------------------------------------------------------------------------
+*****Docker*****
+• What is Container
+• Docker features
+• Docker history
+• Docker usage
+• Docker Architecture
+• Docker Editions
+• Docker system Requirements
+• Docker installation and setup
+• How to verify docker installation
+• About Docker version
+• OS-Level-Virtualization
+• Layered file system
+• VM Ware vs Docker
+• Docker components
+• Docker workflow
+• Docker benefits
+• Docker images
+• Docker Container
+• Docker file
+• Docker hub/registry
+• Docker daemon
+• Docker Install & Configure
+• Docker all commands
+• Docker Volumes
+• Volume (container-container)
+• Volume (Host- Container)
+• Port mapping
+• Registry server
+• Pull/push images from /to registry
+• CMD
+• RUN
+• ENTRYPOINT
+• Relation between container and docker
+• Why docker is so popular
+• Difference b/w container and image
+• Containers History
+• How to see list images in docker
+• What is Docker Registry
+• How to see all docker images
+• How to pull images from docker 
+registries
+• What is pulling in docker?
+• Difference between Docker Pull, run, 
+Push
+• How to run docker image
+• How to exit from container without 
+killing it
+• How to exit from container by killing it
+• How to see all running container on 
+docker host
+• How to check the history of all 
+containers
+• How to stop a container that is running
+• How to find latest containers that are 
+created
+• How to get inside of already a running 
+container
+• How to start a container and remove it 
+once task is completed
+• How to delete or remove a container
+• How to delete or remove image from 
+docker host
+• How to attach a port of docker host to 
+docker container
+• How to run a container in background
+• Difference between docker container 
+run and docker container start
+• How to specify a name to docker 
+container
+• How to see container logs
+• How to see all commands related to a 
+container
+• How to remove docker multiple 
+containers
+• How to check docker container 
+metadata using docker inspect
+• How to list what ports are being used 
+by docker container
+• How to tag docker images
+• How to log into docker registries using 
+docker CLI
+• How to logout from docker registries 
+using docker CLI
+• How to push docker image to docker 
+registries
+• About Docker file
+• How to create Dockerfile to build an 
+image
+• How to build an image from Dockerfile
+• About Dockerfile Instructions
+• Docker Compose
+• How to write Docker Compose files
+• Services in Docker Compose
+• Scaling in Docker Compose
+• Managing containers with Docker 
+Compose
+• Docker Swarm
+• How to write Docker Swarm files
+• Services in Docker Swarm
+• Managing Manager and Nodes with
+• Docker Swarm
+• Scaling in Docker Compose
+• Managing containers with Docker 
+Swarm
+• Stacks, Services, and Tasks in Docker 
+Compose
+• Replicated and Global modes in Docker 
+Swarm
+• Declarative and imperative ways of 
+using Docker Swarm
+• Playing with Manager and Nodes 
+statuses in Docker Swarm
+------------------------------------------------------------------------------------
+*****Ansible*****
+• Configuration Management tool
+• Introduction To Ansible
+• History
+• Advantages of CM tool
+• Why Ansible
+• Ansible Advantages
+• Ansible Architecture setup
+• Install & configure Ansible
+• Features Of Ansible
+• Use Cases Of Ansible
+• What Can Do In Production 
+Environment
+• Ansible Documentation
+• How Ansible Is Different From 
+Configuration Management Tools
+• Ansible Architecture
+• Ansible Control Machine Requirements
+• Ansible Installation Process
+• Ansible Terminologies
+• How Ansible Works
+• Ansible Lab-setup
+• Ansible Inventory
+• Test Environment setup
+• Host Patterns
+• Ad-Hoc commands
+• Modules
+• Gathering facts
+• Playbooks
+• YAML Language
+• Target section
+• Variable section
+• Task section
+• Handle section
+• Dry run
+• Loops
+• Conditionals
+• Vault
+• Representation Of Dictionary In Yaml
+• Representation Of List In Yaml
+• Group Inventory File
+• Ansible Inventory Parameters
+• Ansible Exercise - To Setup Inventory 
+File And Perform Ping Test
+• Ansible Playbooks and Modules
+• Ansible Playbooks
+• Sample Ansible Playbook
+• Ansible Playbook Format
+• Ansible Modules
+• Ansible Tasks
+• File management Playbook
+• Directory management Playbook
+• User management Playbook
+• Group management Playbook
+• Package management Playbook
+• Services management Playbook
+• Web Server Playbook
+• Conditionals Playbook
+• Tags
+• With Items
+• Shell Commands
+• Error Handling
+• How To Run A Playbooks
+• How to check the syntax of a Playbook
+• How to Run a playbook on multiple 
+hosts
+• How to Run a playbook on target hosts
+• Ansible Run Command Methods
+• Ansible custom host file
+• Install Tomcat
+• Install Jenkins
+• Ansible Roles
+------------------------------------------------------------------------------------
+*****Kubernetes*****
+• What is kubernetes
+• Features of kubernetes
+• Architecture of kubernetes
+• Kubernetes Master
+• Kubernetes nodes
+• Kubernetes components
+• Kube-api server
+• etcd (cluster store)
+• Kube-scheduler
+• Node
+• Kube-proxy
+• Kubelet
+• pods
+• Multi container pod
+• Pod limitations
+• Replica sets
+• Deployments
+• Installation of Kubernetes
+------------------------------------------------------------------------------------
+*****Cloud Watch*****
+• What is Cloud Watch
+• Why to monitor
+• What is default monitoring
+• What is detailed monitoring
+• Time interval
+• Increasing Load on Server
+• Creating Alarms
+• Creating Graphs
+• Line
+• Stacked
+• Number
+• Text
+• Create Billing Alarm
+• Monitor Billing
+• Deleting Billing Alarm
+• Why only cloud watch
+• How to see metrics
+• Custom metrics 
+• CPU% Monitoring
+• RAM% Monitoring
+• Connecting EC2 with Cloud Watch with IAM Role
+------------------------------------------------------------------------------------
+*****Maven*****
+• SNS (Simple Notification Service)
+• What is Build
+• Purpose of Build Tools
+• Build Tools Ideology
+• Evolution of Build Tools
+• Few Notable Build Tools
+• Java Based Build Tools
+• Build management
+• Advantages of Build tool
+• Architecture of Maven
+• Maven build life-cycle
+• Maven repositories
+• Pom.xml
+• Multi module project (over view)
+• Maven directory structure
+• Maven link to GitHub
+• Maven link to Jenkins
+• How Developers use maven
+• List of Maven Templates
+------------------------------------------------------------------------------------
+*****Terraform*****
+• What is terraform
+• What are the advantages of terraform
+• why we have to use terraform
+• What is IAC?
+• What are the advantages of IAC?
+• list of cloud providers
+• what are the cloud providers support 
+terraform 
+• how to download terraform software
+• Terraform installation on windows & 
+Linux Servers
+• how to set terraform path temporarily 
+and permanently
+• What is IAM in AWS? 
+• How to create IAM user?
+• how to launch windows instance 
+• how to launch Linux instance
+• creation of S3 bucket
+------------------------------------------------------------------------------------
+*****SNS*****
+• SNS (Simple Notification Service)
+• What is SNS?
+• Need of notifications
+• Formats of SNS
+• Topics in SNS
+• Subscribers in SNS
+• Subscription in SNS
+• SNS integration with Cloud Watch
+• How to clean up SNS
+------------------------------------------------------------------------------------
+*****Apache (Web Server)*****
+• Installation 
+• Types of web packages
+• Configuration
+• Directory Structure
+• Index file
+• Starting service
+• Enabling Service
+------------------------------------------------------------------------------------
+*****Tomcat (Application Server)*****
+• Installation 
+• Configuration
+• Tomcat manager
+• Application management
+• App deployment methods
+• Accessing from other machines
+• User creation
+• Services management
+------------------------------------------------------------------------------------
+*****Jenkins*****
+• Introduction to Jenkins
+• Why Jenkins
+• Relation between Jenkins and Hudson
+• History of Jenkins
+• Why Jenkins is so popular
+• Features of Jenkins
+• Jenkins Architecture
+• Jenkins Prerequisites
+• Continues Integration(CI)
+• Jenkins workflow
+• Ways of CI
+• Benefits of CI
+• Why only Jenkins
+• Git for Windows
+• Java installation & configuration
+• Maven installation & Configuration
+• Jenkins installation & configuration
+• Free style project
+• Maven project by maven
+• Maven project by Jenkins
+• Jenkins Plugins
+• Scheduled Projects
+• Source code polling (Git)
+• Related/Linked projects
+• Upstream & Downstream projects
+• CI-CD pipeline
+• Jenkins Views
+• User management
+• Jenkins Slaves
+• Tomcat web server
+• Minimum Hardware Requirements
+• Recommended Hardware 
+Requirements
+• Jenkins Dashboard Overview
+• Job or Project
+• Executor
+• Build
+• Plugin
+• Setup Environment Variables
+• Jenkins Terminologies
+• Master
+• Slave or Node
+• Job Listing Section
+• Setup Jenkins Server
+• Jenkins Menu Section
+• Jenkins Menu- Item
+• Jenkins Menu-People
+• Jenkins Menu-Build History
+• Jenkins Menu-Manage Jenkins
+• Jenkins Menu-views
+• Build Queue Section
+• Build Executor status Section
+• Jenkins - Creating Jobs in Jenkins
+• Naming a Project 
+• About Project Descriptions
+• How to disable the build systems
+• Source Code Management
+• Build Triggers
+• Create a Sample Project
+• Understand Jenkins Job Process
+• How to check Build Information
+• Jenkins Build Color Code system
+• Configure Jenkins Build Server
+• Configure Java JDK for Jenkins Build 
+Server
+• Configure Apache Maven for Jenkins 
+Build Server
+• Configure the JAVA JDK for Build jobs 
+in Jenkins
+• Configure the Maven for Build Jobs in 
+Jenkins
+• Configure GitHub for Build Jobs in 
+Jenkins
+• Configure SCM-Git Plugin for Build Jobs 
+in Jenkins
+• Secure Jenkins
+• Manage Jenkins Plugins
+• Install Plugins
+• Upgrade Plugins
+• Backup plugins
+• Jenkins User administration
+• Create Jenkins User Accounts
+• Delete Jenkins User Accounts
+• How to change the Jenkins Admin 
+Password
+• Change Home Directory
+• Configure - Executors, Labels, SCM 
+Checkout Retry Count
+• Build Triggers
+• Configure Poll Source Code 
+management in Jenkins
+• Configure Poll SCM Changes using 
+Crontab in Jenkins
+• Trigger Builds Remotely using URL
+• Trigger Builds based on build Pipeline 
+or other Projects
+• Build triggers Periodically
+• Build triggers when changes pushed to 
+GitHub or SCM
+• Architecture of Distributed Build
+• Configure Jenkins Master Server
+• Configure Jenkins Slave Server
+• Configure authentication between 
+Jenkins master and Slave Server
+• Setup Relationship between Master 
+and Slave
+• Configure Project to build on Jenkins 
+slave server
+• Email Notifications in Jenkins
+• Purpose of Email Notification
+• Email Notification plugins
+• CI-CD Pipeline Project
+• Jenkins Pipelines
+• Types of pipelines
+• Advantages of Pipeline Script
+• CI-CD Pipeline Project
+• Jenkins Pipelines
+• Types of pipelines
+• Advantages of Pipeline Script
+------------------------------------------------------------------------------------
+Projects
+• DevOps Real time project - 1
+• DevOps Real time project - 2
+(CI-CD Pipeline projects)
+Additional Support
+• Provides Regular Recorded Class Video
+• Provides Softcopy Material
+• Resume preparation explanation for
+a. Fresher
+b. Experienced
+i. IT
+ii. Non-IT (even > 10 Years also)
+• Resume Validation
+• We will conduct One-to-One Discussion at the end of course to provide guidance
+• Explanation of 
+a. Day-to-Day tasks
+b. Errors & Troubleshooting
+c. Dealing with client calls
+d. Real-time scenarios
+e. Interview cracking tips
+f. Interview & Exam Questions
+g. IT Working Environment
+• Job Assistance will be provided
+• Doubts clarification in English, Hindi & Telugu
+• Explanation from “0” level
+• Any “Edu” Qualification is accepted (Including Non IT)
+• Provides Course Completion CertificatE
