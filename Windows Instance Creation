@@ -1,0 +1,16 @@
+EC2
+• Number of instances - 1
+• click on Name and tags: MyWindows 
+• AMI (Amazon Machine Image): Windows Server 2022 Base
+• Instance Type: T2 Micro
+• Key pair: Give any name (Eg: demo)
+• Make sure RDP port is selected
+• Make sure 30GB storage is selected
+• Launch Instance – View Instances
+• Can see Windows machine running
+-----------------------------------------
+• Select Instance-Connect-RDP client-Get Password-Choose Filedemo.pem (upload)-Decrypt password
+• Download Remote Desktop Connection application and run it.
+• Enter Password-connect-yes
+• Can see windows server 2022 screen
+------------------------------------------------------------------------------------------------------------------------------------------
