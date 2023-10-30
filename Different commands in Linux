@@ -58,12 +58,13 @@
   ls -al --- to show all hidden files and folders with long list and data permissions without ordered date and time.
 				Syntax:- ls -al
   ls -lta --- to show all hidden files and folders with long list and data permissions with ordered date and time.
-				Syntax:- ls -al			
+				Syntax:- ls -lta	
 				
 6)to create hidden files/folders
               Syntax:- touch .filename
-				Syntax:- mkdir .foldername				
-				
+	     	       mkdir .foldername	
+7) history -- to see all executed commands	
+	      Syntax:- history		
 				
 				
 				
