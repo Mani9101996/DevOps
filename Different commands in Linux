@@ -47,7 +47,12 @@
 	                    press esc  :  wq  (w-save,q-quit)enterkey
 
 
-4)
+4)mkdir---create new directory/folder
+				Syntax:--mkdir filename -----------to create one folder
+						mkdir filename1 filename2 filename3 filename4----------- to create many folders
+						
+5)ls -l --- long list						
+				Syntax:- ls -l
 
 
 
