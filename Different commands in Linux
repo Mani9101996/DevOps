@@ -1,0 +1,53 @@
+1)	sudo su--- to go to root directory
+2)	ls---to see all list of files and folders present in directory
+3):-Different ways to create files.
+    Method 1:--
+      a)CAT --(create & append file & see data)
+                Create:--
+                   syntax:-- cat > filename enterkey
+                             write content and enter
+                            ctrl + d 
+	              Append:-
+                   syntax:-- cat >> filename enterkey
+                             write content and enter
+                            ctrl + d 
+                to override data:--
+                   syntax:-- cat > file name enterkey
+                             write content and enter
+                            ctrl + d 
+  	            To see data:-
+                  syntax:-- cat  filename enterkey
+------------------------------------------------------------------------------
+    Method 2:--
+      b)Touch---to create empty files
+              Syntax:- a) touch filename enterkey -- to create one empty file
+	                     b)Touch filename1 filename2 filename3 filename4…… to create multiple file names  
+------------------------------------------------------------------------------
+    Method 3:--Nano –to create and append file
+              Syntax:-nano filename enterkey
+                      Open dialoug box  write content 
+                      Ctrl x and then y and press enterkey
+
+                    to see data and update and delete:-
+                    syntax:-- nano filename enterkey
+                              Open dialoug box  write content 
+                              Ctrl x and then y and press enterkey
+
+------------------------------------------------------------------------------
+    Method 4:--vi/vim:--to create and append file
+              Syntax:-vi filename enterkey
+                    	Open dialoug box and to enter text  Press i  key(insert) 
+                  	  write content 
+	                    press esc  :  wq  (w-save,q-quit)enterkey
+
+                    to see data and update and delete::-
+                    syntax:-- vi filename enterkey
+                      Open dialoug box and to enter text  Press i  key(insert) 
+                  	  write content 
+	                    press esc  :  wq  (w-save,q-quit)enterkey
+
+
+4)
+
+
+
