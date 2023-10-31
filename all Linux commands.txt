@@ -58,13 +58,42 @@
   ls -al --- to show all hidden files and folders with long list and data permissions without ordered date and time.
 				Syntax:- ls -al
   ls -lta --- to show all hidden files and folders with long list and data permissions with ordered date and time.
-				Syntax:- ls -al			
+				Syntax:- ls -lta	
 				
 6)to create hidden files/folders
               Syntax:- touch .filename
-					   mkdir .foldername				
+	     	       mkdir .foldername	
+7) history -- to see all executed commands	
+	      Syntax:- history		
 				
-				
+8)cd dir--- to change directory
+  cd dira/dirb/dirc ---to go to folder in folder directly
+
+
+9)cd .. --- to come back one folder back
+  cd ../../.. ---to come back to root folder
+
+10)pwd --- to show present working directory with path
+11)clear --- to clear the screen
+   ctrl+l --- to cear the screen
+12) tree --- to show all files and folders in tree format	
+		 to use tree command we need to install tree software.
+		 syntax:- yum install tree -y
+13)cp -- to copy file or folder to other folder
+		 syntax:- cp <source file/folder> <destination folder>
+14)cut --to cut file or folder to other folder
+		 syntax:- mv <source file/folder> <destination folder>
+15)
+16)
+17)
+18)
+19)
+20)
+   
+   
+
+
+
 				
 				
 				
