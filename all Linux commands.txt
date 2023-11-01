@@ -83,10 +83,10 @@
 		 syntax:- cp <source file/folder> <destination folder>
 14)cut --to cut file or folder to other folder
 		 syntax:- mv <source file/folder> <destination folder>
-15)
-16)
-17)
-18)
+15)rm-rf --- to delete file/folder from the current directory with data(r-recursive, rm-remove, f-forcefully)
+16)cp -r (dir1 or file1) dira/dirb/dirc.....  --- to copy non empty file/folder into other folders.
+17)rename --- to rename file/folder in the current directory
+		 syntax:- mv <source file/folder> <new name)
 19)
 20)
    
