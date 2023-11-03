@@ -87,19 +87,67 @@
 16)cp -r (dir1 or file1) dira/dirb/dirc.....  --- to copy non empty file/folder into other folders.
 17)rename --- to rename file/folder in the current directory
 		 syntax:- mv <source file/folder> <new name)
-19)
-20)
-   
-   
+19)grep --- 
+20)less ---This command is an improvement over more, as it allows both forward and backward navigation and also has search options.
+			It can go to the beginning and the end of a file instantly
+			
+			 syntax:- less </path of file>
+
+21)more ---This command displays the contents of a file or the output of another command one screenful at a time. 
+			It allows forward navigation and limited backward navigation. 
+			It shows the percentage of the file read on its status bar. 
+			It automatically closes when it reaches the end of the file
+			
+			 syntax:- more </path of file>
+			 
+22)head ---This command prints the first part of the file, by default the first 10 lines.It can also print the first n lines with the -n option
+			 syntax:- head </path of file>    and   head -5 </path of file>
+		
+23)tail --- This command prints the last part of the file, by default the last 10 lines. It can also print the last n lines with the -n option,
+			 syntax:- head </path of file>    and   head -5 </path of file>
+
+24)sort ---It can sort alphabetically, numerically, by month, by field, and more.
+			It can also remove duplicates, merge sorted files, and check if a file is sorted
+            syntax:-sort </filepath>
+			
+25)hostname ---	This command is used to get or set the hostname of the instance.
+26)hostname -i ---to get ip of the instance/system
+27)ifconfig --- The ifconfig command is a network management tool that can be used to configure 
+				and view the status of the network interfaces in Linux operating systems.
+				syntax:--
+				ifconfig [-a] [-v] [-s] <interface> [ [<AF>] <address>]
+				
+				Where:interface is the name of the network interface.
+                      address is the IP address that you want to assign.
+                      -a displays all the interfaces available, even if they are down.
+                      -v runs the command in verbose mode – log more details about execution.
+                      -s displays a short list, instead of details.
 
 
+28)cat </filepath>/os-release --- to see which type of system(if forgot place * to search with all possibilities(cat </filepath>/*re*a*))
+29)grep ---The grep command is a powerful and versatile tool for searching text files and output streams in Linux.
+				syntax:-grep [options] pattern [file...]
+				Some of the most common options of the grep command are:
 
-				
-				
-				
-				
-				
-				
+					  -i: This option makes the search case-insensitive, meaning it will match both uppercase and lowercase letters.
+					  -v: This option reverses the search, meaning it will display the lines that do not match the pattern.
+					  -n: This option shows the line number of each matching line.
+					  -c: This option counts the number of matching lines and displays only the total.
+					  -l: This option lists the names of the files that contain matching lines.
+					  -w: This option matches only whole words, meaning the pattern must be surrounded by whitespace or punctuation.
+					  -o: This option shows only the part of the line that matches the pattern.
+					  -A n: This option shows n lines of context after each matching line.
+					  -B n: This option shows n lines of context before each matching line.
+					  -C n: This option shows n lines of context around each matching line.
+
+30)yum install <softwar/package name> --- to install software or package name.
+31)which <package name> --- to see installed package name
+32)yum update <software/package name> --- to update any install software/package
+33)yum remove <software/package> --- to uninsatall the package
+34)yum list installed --- to see all installed softwares/packages
+35)yum list installed | grep httpd* --- to see all installed softwares/packages and search with httpd characters
+36)
+   		
 				
 				
 				
