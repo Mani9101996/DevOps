@@ -146,7 +146,9 @@
 33)yum remove <software/package> --- to uninsatall the package
 34)yum list installed --- to see all installed softwares/packages
 35)yum list installed | grep httpd* --- to see all installed softwares/packages and search with httpd characters
-36)
+36)service <package name> status --- to see package service status
+37)service <package name> start --- to start package service
+38)service <package name> stop --- to stop package service
    		
 				
 				
