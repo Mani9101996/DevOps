@@ -147,9 +147,33 @@
 34)yum list installed --- to see all installed softwares/packages
 35)yum list installed | grep httpd* --- to see all installed softwares/packages and search with httpd characters
 36)service <package name> status --- to see package service status
-37)service <package name> start --- to start package service
-38)service <package name> stop --- to stop package service
-   		
+37)service <package name> start OR 
+	systemctl start <package name> --- to start package service OR systemctl start <package name>
+38)service <package name> stop OR 
+	systemctl stop <package name> --- to stop package service
+39)service httpd reload --- to restart service
+40)service httpd restart --- to restart service
+41)chkconfig httpd on --- to start service permanently
+42)chkconfig httpd off --- to stop service permanently
+43)echo <msg> --- to display same msg as output
+43)echo <msg> > <filename> --- to store /create new file with direct message
+44)echo <msg> >> <filename> --- to append data to the existing file
+45)whoami --- to see user
+46)find -type f --- to see all files in current directory
+47)find -type d --- to see all directories in current directory
+48)find / -type f --- to see all files under top level root directory
+49)find / -type d --- to see all directories under top level root directory
+50)find / -type f -name <file_name> --- to search specific file under top level root directory
+51)find / -type d -name <dir_name> --- to search specific dir under top level root directory
+52)soft link : ln –s <mainfile> <linkfile>  --- to create shortcut filename to existing file.
+53)soft link : ln –s <mainfile> <linkfile> --- to create backup of that file
+54)Adding single/multiple users to group --- gpasswd -a/-M <user>,<user1> <group>
+55)Removing users from group --- gpasswd –d <user>,<user1> <group>
+56)
+57)
+58)
+59)
+60)	
 				
 				
 				
