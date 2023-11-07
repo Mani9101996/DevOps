@@ -167,14 +167,19 @@
 51)find / -type d -name <dir_name> --- to search specific dir under top level root directory
 52)soft link : ln –s <mainfile> <linkfile>  --- to create shortcut filename to existing file.
 53)soft link : ln –s <mainfile> <linkfile> --- to create backup of that file
-54)Adding single/multiple users to group --- gpasswd -a/-M <user>,<user1> <group>
-55)Removing users from group --- gpasswd –d <user>,<user1> <group>
-56)
-57)
-58)
-59)
-60)	
-				
+54)useradd or adduser <username> --- to create  users.
+55)userdel -r <username> --- to delete user.
+56)Adding single/multiple users to group --- gpasswd -a/-M <user>,<user1> <group>
+57)Removing users from group --- gpasswd –d <user>,<user1> <group>
+58)tar : tar -cvf <new.tar> <old> --- to convert into tar file
+59)tar -xvf <new.tar> (du -h file name) --- to reconvert into file
+60)zip : gzip <new.tar> --- to convert tar file into zip file.
+61)gunzip <new.tar.gz> --- to unzip  and convert back to tar file
+62)wget --- to download softwares/packages using download link.
+63)File/Directory Permissions:
+	chmod (permissions)
+	chown (owner)
+	chgrp (group				
 				
 				
 				
