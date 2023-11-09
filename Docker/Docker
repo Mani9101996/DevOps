@@ -1,0 +1,73 @@
+Docker:--
+
+Container : A container like a virtual machine
+Docker : Docker is a tool to create those virtual machines
+
+
+--Took from shipping containers.
+--Docker is a tool designed to make containers in which we can deploy any type of applications easily.
+--Docker uses union file system (layered)
+--Docker performs os-level virtualization
+------------------------------------------------------------------------------
+What is Docker??
+
+--Docker is a tool that performs operating-system-level virtualization, also known as "containerization". It was first released in 2013 and was developed by Docker, Inc
+--Docker is tool used to create virtual machines called "containers". 
+------------------------------------------------------------------------------
+Docker benefits
+
+--Containerization (OS level virtualization)(No need guest OS)
+--No pre-allocation of RAM
+--Can replicate same environment
+--Less cost
+--Less weight (MB’s in size)
+--Fast to fire up
+--Can run on physical/virtual/cloud
+--Can re-use(same image)
+--Can create machines in less time
+------------------------------------------------------------------------------
+Docker components
+
+--Docker image: Contains OS(very small)(almost negligible) + softwares
+--Docker Container: Container like a machine which is created from Docker image.
+--Docker file: Describes steps to create a docker image.
+--Docker hub/registry: Stores all docker images publicly.
+--Docker daemon: Docker service
+------------------------------------------------------------------------------
+Ways to create Docker Images
+
+--Take image from Docker hub
+--Create image from existing docker containers
+--Create image from docker file
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
