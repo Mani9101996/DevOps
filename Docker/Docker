@@ -40,6 +40,42 @@ Ways to create Docker Images
 --Create image from existing docker containers
 --Create image from docker file
 ------------------------------------------------------------------------------
+Docker Installation
+
+1)create linux instance and login
+2)uname -r (OS) --- to know OS of instance
+3)yum update -y ---to update that instance if any new updates available
+4)yum install <docker> -y --- to install docker or any other image
+5)docker --version --- to verify version of docker image/software
+6)docker --version ---to verify docker version
+7)docker info --- to know details of docker ctr and other details likecreated,running,stopped,pauses etc.
+8)service docker start ---to start service of docker
+9)chkconfig docker on --- to start docker service permanently
+10)which docker --- to verify docker installed or not
+11)docker info --- to know basic details of docker image.
+12)docker images  --- to see all images in our machine
+13)docker ps --- to see only running containers
+14)docker ps -a ---to see all containers
+15)docker run -i -t ubuntu /bin/bash  ---To create container
+			i -> Interactive mode
+ 		        t -> Terminal
+16)cat /etc/os-release  --- to know os of that docker container
+17)hostname --- to see hostname of docker container/inatance
+18)exit --- to come out of the docker container.
+19)docker images --- To see all images present in your local machine
+20)docker search <ubuntu/imagename> --- To search image in online docker registry
+21)docker pull <jenkins/image name> --- Download image from online docker registry to your machine
+    or
+   docker pull chef/chefdk  --- (create container from this image)
+22)docker rename container new_name --- To rename a container
+23)docker run --name saicontainer -it ubuntu /bin/bash  --- Create container by giving container name
+24)docker start <ctrname/ctrID> --- To start container
+25)docker attach <ctrname/ctrID> --- To start container
+26)docker attach <ctrname/ctrID> --- To go inside container
+27)docker ps -a --- To see all containers
+28)docker ps --- To see only running containers
+29)docker stop saicontainer --- To stop container
+30)docker rm saicontainer --- To delete container
 
 
 
