@@ -41,7 +41,6 @@ Ways to create Docker Images
 --Create image from docker file
 ------------------------------------------------------------------------------
 Docker Installation
-
 1)create linux instance and login
 2)uname -r (OS) --- to know OS of instance
 3)yum update -y ---to update that instance if any new updates available
@@ -76,25 +75,58 @@ Docker Installation
 28)docker ps --- To see only running containers
 29)docker stop saicontainer --- To stop container
 30)docker rm saicontainer --- To delete container
+------------------------------------------------------------------------------
+Create container from our own image
+
+1)Create container
+• docker run --name saicontainer -it ubuntu /bin/bash
+• touch /tmp/myfile
+• docker diff saicontainer (run outside of container)
+
+2)To create image from container (Be inside base machine)
+• docker commit saicontainer
+3) To give a name to your image
+• docker tag <imageID> saiimage
+• docker images
+4) To give image name while creating image
+• docker commit saicontainer <image name>
+5) Create container from our image
+• docker run --name haricontainer -it saiimage /bin/bash
+• ls /tmp
+------------------------------------------------------------------------------	
+Dockerfile :
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+• A text file with instructions to build image
+• Automation of Docker Image Creation
+		FROM
+		RUN
+ 		CMD
+• Step 1 : Create a file named Dockerfile
+• Step 2 : Add instructions in Dockerfile
+• Step 3 : Build dockerfile to create image
+• Step 4 : Run image to create container
+				-----------------------------------------------------
+vi Dockerfile
+	• FROM ubuntu
+	• RUN echo "Hi Sai" > /tmp/testfile
+• To create image out of Dockerfile
+	• docker build -t test . (-t : tag to image)
+	• docker ps -a
+	• docker images
+• Create container from the above image
+	• docker run -it --name testcontainer test /bin/bash
+	• cat /tmp/testfile
+				-----------------------------------------------------
+vi Dockerfile
+• FROM ubuntu
+• WORKDIR /tmp
+• RUN echo "Hi Sai" > /tmp/testfile
+• ENV myname sai (echo $myname)
+• COPY testfile1 /tmp (testfile1 must be in current directory in EC2)
+• ADD test.tar.gz /tmp (test must be in current directory in EC2 in tar,gz format)
+				-----------------------------------------------------
+	
 
 
 
