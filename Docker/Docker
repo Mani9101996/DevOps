@@ -125,8 +125,111 @@ vi Dockerfile
 • ENV myname sai (echo $myname)
 • COPY testfile1 /tmp (testfile1 must be in current directory in EC2)
 • ADD test.tar.gz /tmp (test must be in current directory in EC2 in tar,gz format)
-				-----------------------------------------------------
-	
+--------------------------------------------------------------------------------------------------
+----Docker Advanced Concepts----
+Volumes:--Volume is a directory inside your container
+
+• First declare directory as a volume and then share volume
+• Even if we stop container, still we can access volume
+• Volume will be created in one container
+• You can declare a directory as volume only while creating container
+• You can't create volume from existing container
+• You can share one volume across any no of containers
+• Volume will not be included when you update an image
+• Map volumes in two ways
+• Share host – container
+• Share container - container
+					-----------------------------------------------------
+----Volumes (declaration by using docker file)----
+• Declare volume
+	• FROM ubuntu
+	• VOLUME ["/data"] 
+• docker build -t myimg .
+• docker run -it --name mycont1 myimg /bin/bash
+• ls (you can see data folder)
+• touch /data/myfile
+• exit
+
+----Volumes (container-container)----
+
+• To share volume while creating another container
+		• docker run -it --name mycont2(new) --privileged=true --volumes-from mycont1(old) ubuntu /bin/bash
+• ls /data/ (can see myfile)
+• what ever u do in one volume, can see from other volume
+		• touch /data/test
+• docker start mycont1
+• docker attach mycont1
+• ls /data/ (can see test file)
+• exit
+					-----------------------------------------------------
+Volumes(declaration by using command)
+
+• docker run -it --name mycont3 -v /sai ubuntu /bin/bash
+• ls (can see sai folder. can mount like above. same)
+
+
+----Volumes(host-container)----
+
+Verify file in /home/ec2-user
+• docker run -it --name nitcont -v /home/ec2-user:/raj --privileged=true ubuntu
+/bin/bash
+• cd raj
+• ls (can see all files created in your host)
+• touch rajfile (in container /raj)
+• exit
+• ls (in host /home/ec2-user)
+• Can see rajfile
+
+----------------------------------------------------------------------------------------------------------
+• To see full details of container (even if it is in stopped state)
+• docker inspect nitcont
+--------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
