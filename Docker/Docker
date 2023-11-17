@@ -184,39 +184,83 @@ Verify file in /home/ec2-user
 • To see full details of container (even if it is in stopped state)
 • docker inspect nitcont
 --------------------------------------------------------------------------------------------------
+----Port expose----
 
+• docker run -td --name webserver -p 80(host):80(container) ubuntu (d-daemon)
+• docker port webserver
+• docker exec -it webserver /bin/bash (to go inside container)
+• apt-get update
+• apt-get install apache2 -y
+• cd /var/www/html
+• echo "Hello" > index.html
+• service apache2 restart
+• In browser, PublicIP:80
+(Can change host port. But not container port. Make sure, you are taking default port for container)
+------------------------------------------------------------------------------------------------
+• Try with jenkins image (8080:8080) (Open 8080 port in SG of EC2 machine)
+(To unmap the port, stop the container or delete the container)
+--------------------------------------------------------------------------------------------------
+----Important docker commands----
 
+• Stop all running containers: docker stop $(docker ps -a -q)
+• Delete all stopped containers: docker rm $(docker ps -a -q)
+• Delete all images: docker rmi -f $(docker images -q)
 
+--------------------------------------------------------------------------------------------------
+----CMD----
 
+• vi Dockerfile
+• FROM ubuntu:16.04
+• CMD echo 'Welcome to docker'
+• docker build -t app .
+• docker run -it app
+• can see Welcome to docker
+• docker run -it app echo 'Welcome to AWS'
+• can see Welcome to AWS
+• i.e run time command will overwrites the argument mentioned in CMD in docker file
+• vi Dockerfile
+• FROM ubuntu:16.04
+• CMD echo 'Welcome to docker'
+• CMD echo 'Welcome to Python'
+• docker build -t app1 .
+• docker run -it app1
+• can see Welcome to Python (i.e takes latest)
 
+--------------------------------------------------------------------------------------------------
+----Entrypoint----
+• vi Dockerfile
+FROM ubuntu:16.04
+ENTRYPOINT ["echo","Hi Docker"]
+• docker build -t app3 .
+• docker run -it app3
+(can see Hi Docker)
+• ENTRYPOINT: We cann't overwrite ENTRYPOINT instructions by runtime command
+• docker run -it app3 echo 'Hi Hari'
+• can see Hi Docker echo Hi Hari
+• i.e run time command will overwrites the argument mentioned in CMD instruction in docker file
+• i.e run time command will not overwrites the argument mentioned in ENTRYPOINT instruction in docker file
+• Combinely we can use 
+FROM ubuntu:16.04
+ENTRYPOINT ["echo"]
+CMD ["Hi Docker"]
+• docker build -t app4 .
+• docker run -it app4
+• Can see Hi Docker
+• docker run -it app4 'Hi Hari'
+(Can see Hi Hari)
+--------------------------------------------------------------------------------------------------
+----CMD, RUN & ENTRYPOINT----
 
+• The difference between the RUN and CMD instructions is that a RUN instruction 
+actually runs the command and commits it, whereas the CMD instruction is not 
+executed during build time
+• RUN executes command(s) in a new layer and creates a new image. E.g., it is often 
+used for installing software packages.
+• CMD sets default command and/or parameters, which can be overwritten from 
+command line when docker container runs.
+• CMD : It is an instruction that executes when we run a container out of image
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--------------------------------------------------------------------------------------------------
 
 
 
