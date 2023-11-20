@@ -259,7 +259,6 @@ used for installing software packages.
 • CMD sets default command and/or parameters, which can be overwritten from 
 command line when docker container runs.
 • CMD : It is an instruction that executes when we run a container out of image
-
 --------------------------------------------------------------------------------------------------
 
 
