@@ -1,0 +1,86 @@
+*******************Ansible*********************
+
+Configuration Management
+• Configuration Management
+		• It’s a method through which we automate admin tasks.
+		• Configuration Management tool turns your code into infrastructure
+		• So your code would be Testable, Repeatable & Versionable.
+• IT infrastructure refers to the composite of :
+		• Software 
+		• Network
+		• People 
+		• Process
+
+• Pain points :
+		• Managing user & group accounts
+		• Dealing with packages
+		• Taking backup
+		• Deploying all kinds of applications
+		• Configure services
+--------------------------------------------------------------------------------------------------
+Why Configuration Management Tool?
+
+• Why Configuration Management ?
+		• Complete Automation
+		• Increase Uptime
+		• Improve Performance
+		• Ensure Compliance
+		• Prevent Errors
+		• Reduces Cost
+--------------------------------------------------------------------------------------------------
+Why Ansible?
+• Ansible is an administration tool. What ever system admins (Linux/windows) used to do manually, now we are automating all those tasks by using
+	Ansible (Any CM Tool)
+• Can use this tool whether your servers are in on-premises or in the cloud.
+• It turns your code into infrastructure i.e your computing environment has some of the 
+	same attributes as your application:
+• Your code is versionable. 
+• Your code is repeatable. 
+• Your code is testable. 
+• You only need to tell what the desired configuration should be, not how to achieve it
+• Through automation, get desired state of server.
+--------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
