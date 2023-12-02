@@ -40,13 +40,39 @@ Why Ansible?
 • You only need to tell what the desired configuration should be, not how to achieve it
 • Through automation, get desired state of server.
 --------------------------------------------------------------------------------------------------
+Install & Configure Ansible(Server)
+• Launch Amazon Linux (need not to install ansible in nodes)
+• yum install wget -y
+• wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+• yum install epel-release-latest-7.noarch.rpm -y
+• sudo yum update -y
+• sudo yum install git python python-devel python-pip openssl ansible -y
+• ansible --version
+• sudo vi /etc/ansible/ansible.cfg & enable the below lines
+inventory = /etc/ansible/hosts
+sudo_user = root
 
 
+YAML(Yet Ain't Markup Language) Basics
 
-
-
-
-
+• For Ansible, nearly every YAML file starts with a list
+• Each item in the list is a list of key/value pairs, commonly called a "dictionary"
+• All YAML files have to begin with "---" and end with "...
+• All members of a list lines must begin with same indentation level starting with "- "
+--- # A list of tasty fruits
+fruits:
+- Apple
+- Orange
+- Strawberry
+- Mango
+...
+• A dictionary is represented in a simple key: value form (the colon must be followed by a space)
+--- # An employee record
+Employee:
+name: SAI
+job: DevOps Engineer
+skill: Elite
+...
 --------------------------------------------------------------------------------------------------
 
 
