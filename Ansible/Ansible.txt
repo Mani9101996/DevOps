@@ -99,7 +99,7 @@ Syntax for calling host  ---1)<groupname>[0]--1st computer/host
 *yum install httpd -y-----(throws error msg->you need to be root to perform this command)
 *sudo yum install httpd -y-----now the software will be installed.
 *stop all instances and log off.
-
+--------------------------------------------------------------------------------------------------
 *********************************06-12-2023************************************
 *start all instances and login
 *sudo su (in all instances)
@@ -178,7 +178,162 @@ Note:--PROS:-
 	2) If common UN used across all PW. removing password can be chance .
 
 --------------------------------------------------------------------------------------------------
+*********************************07-12-2023************************************
+*start  all instance and login
+*sudo su(in server and host)
+*su - ansible (in server and host)
+*ctrl + l
+*ssh 172.31.40.244
+*exit(back to server)
+*ssh 172.31.38.65
+*exit(back to server)
+* vi /etc/ansible/hosts
+		i+esc+:wq!+enter  or i+esc+:q!+enter    ( to get rid of error msg while coming out of text area
+		
+*ansible all --list-hosts or ansible webservers --list-hosts====>shows all host ip's
+*ansible webservers[1] --list-hosts====>shows 2nd host ip's
+*ansible webservers[0] --list-hosts====>shows 1st host ip's
+*ansible webservers[-1] --list-hosts====>shows last host ip's
+*ansible webservers[-2] --list-hosts====>shows last 2nd host ip's
+*ansible webservers:dbservers --list-host====>shows two groups host ip's
+*ansible all -a "ls"     or     ansible webservers -a "ls"  ====>shows list of all files and dir present in all hosts 
+*ansible webservers -a "ls -a"
+*ansible webservers -a "ls /home"
+*ansible webservers -a "touch teja123"
+*ansible webservers -a "ls"
+*ansible webservers -a "touch mani"
+*ansible webservers -a "ls"
+*ansible webservers -a "which httpd"===>throws error 
+*ansible webservers -a "yum install httpd -y"===>throws error
+*ansible webservers -a "sudo yum install httpd -y"==> will work
+*ansible webservers -a "which httpd"==> throws error (we cannot se sw present in hosts)
+*ansible webservers -a "sudo which httpd"   or   ansible webservers -b -a "which httpd"===> will work
+*
+*ansible webservers -b -a "yum remove httpd -y" ==> will work 
+*ansible webservers -b -a "which httpd"===>throws error
+*history
 
+We can create code in 3 ways:--1) Ad-hoc commands( simple linux commands)
+							   2) Module concept( making one command as module)
+							   3) playbooks (>or= 1 module)
+
+
+*****************Ad-hoc Commands*********************
+*ansible webservers  -a "touch teja"===> creating same empty file  means it replacing old file with new file
+*ansible webservers  -a "touch gitfile"
+*ansible webservers  -a "ls"
+*sudo vi /etc/ansible/ansible.cfg
+				press i
+		--we need to add below text anywhere inthe file
+				interpreter_python=auto_silent
+				command_warning=False
+				esc+:wq and enter
+
+*ansible webservers  -a "touch gitfile"==> no warnings be seen
+*ansible webservers  -a "touch devopsfile"==> no warnings be seen
+*ansible webservers  -a "touch /tmp/linuxfile"
+*ansible webservers  -a "hostname -i"
+*ansible webservers  -a "which tree"
+*ansible webservers -b -a "yum remove tree -y"  or  ansible webservers -a "yum remove tree -y"  -b
+*ansible webservers  -a "which tree"  -b
+*ansible webservers -b -a "yum install tree -y"
+
+
+****************Using Single Module*******************
+*ansible webservers -b -m yum -a "pkg = httpd state=present"====> -m means declaring yum as module)
+
+	**after executing is output shows in red coulor====>warnings/error
+										yellow colour==>sucessfully executed
+										green colour===>already executed
+*ansible webservers -b -m yum -a "pkg=httpd state=present"
+*ansible webservers  -a "which tree" -b
+*ansible webservers -b -m yum -a "pkg=httpd state=present"===>to install
+*ansible webservers -b -m yum -a "pkg=httpd state=latest"====>install with latest version
+*ansible webservers -b -m yum -a "pkg=httpd state=absent"====>remove software
+*ansible webservers -b -m yum -a "pkg=httpd state=present"
+*ansible webservers -b  -a "which httpd"
+*ansible webservers -b  -a "service httpd status"
+*ansible webservers -b -m service -a "name=httpd state=started"====> to start service
+*ansible webservers -b -m -a "service httpd status"
+*ansible webservers -b -a "service httpd status"
+*ansible webservers -b -m service -a "name=httpd state=restarted"=====> to restart service
+*ansible webservers -b -m service -a "name=httpd state=stopped"=====> to stop service
+*ansible webservers -b -m user -a "name=raj state=present"
+*ansible webservers -b -a "cat /etc/passwd"
+*ls
+
+Note:  
+below are default actions , so we need not to use "state". But for delete we need to use mandetorily.
+		user--->create
+		pkg---->install
+		service->start/stop
+		file/dir-->create
+
+*ansible all -a "ls"
+*touch xyzfile
+*ansible all -a "ls"
+
+**********copying above created file in all hosts*****************
+*ansible all -b -m copy -a "src=xyzfile dest=/tmp"===> making copy as module and copying file into hosts instances
+*ansible all -a "ls /tmp"
+*history
+*ansible all -m setup -a "*ipv4*"
+*ansible all -m setup -a
+*ansible all -m setup
+*ansible all -m setup -a "filter=*IPV4*"
+*ansible all -m yum -a "pkg = git" -b
+*ansible all -b -m yum -a "pkg = git"
+*ansible all -b -m yum -a "pkg=git"
+*ansible all -a "which git" -b 
+
+
+****************Playbooks**********************
+•Each playbook is composed of one or more ‘modules’ in a list
+• Playbooks are divided into many sections like….
+	• Target Section - Defines the hosts against which playbooks tasks has to be executed
+	• Variable Section - Defines variables
+	• Tasks Section - List of all modules that we need to run, in an order
+
+***********************YAML(Yet Ain't Markup Language) Basics***********************
+• For Ansible, nearly every YAML file starts with a list
+• Each item in the list is a list of key/value pairs, commonly called a "dictionary"
+• All YAML files have to begin with "---" and end with "...
+• All members of a list lines must begin with same indentation level starting with "- "
+--- # A list of tasty fruits
+fruits:
+- Apple
+- Orange
+- Strawberry
+- Mango
+...
+• A dictionary is represented in a simple key: value form (the colon must be followed by a space)
+--- # An employee record
+Employee:
+name: SAI
+job: DevOps Engineer
+skill: Elite
+...
+
+***********************Our First Playbook***************************
+• All sections begin with "-" & its attributes & parameters beneath it
+• Indentation is imp, use only spaces & not tabs
+• Create a folder(playbooks) & go inside that(vi test.yml)
+• test.yml
+--------------------------------------------------------------------------------------
+*ls
+*vi test.yml
+	--- # My First YAML playbook
+	- hosts: demo
+	   tasks:
+			- name: Install httpd on server
+			  action: yum pkg=httpd state=installed
+• Run ansible-playbook to call the playbook
+ansible-playbook test.yml
+	
+*ls
+*history
+
+--------------------------------------------------------------------------------------
 
 
 
