@@ -76,7 +76,8 @@ Syntax for calling host  ---1)<groupname>[0]--1st computer/host
 			    2)<groupname>[1]--2nd computer/host
 			    3)<groupname>[3]--3rd computer/host				
 --------------------------------------------------------------------------------------------------
-Linux system administration steps( to be performed in all computers/instances-->ie:-ansible server,ansible1,ansible2)
+******************Linux system administration steps( to be performed in all computers/instances-->ie:-ansible server,ansible1,ansible2)*****************
+*start all instances and login
 *useradd <username>
 *password <username>
 	newpassword enter---******
@@ -97,22 +98,84 @@ Linux system administration steps( to be performed in all computers/instances-->
 		esc---:wq--enter
 *yum install httpd -y-----(throws error msg->you need to be root to perform this command)
 *sudo yum install httpd -y-----now the software will be installed.
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
+*stop all instances and log off.
+*********************************07-12-2023************************************
+*start all instances and login
+*sudo su (in all instances)
+
+Note:----SSH connection is default available but it doesnt mean we can connect from server to any host,to connect we need to establish/enable connection)
+     ----creation of UN,PW,sudo permission provision, SSH connection to be done by root user in all systems/instances.
+     ----delete/remove password step to be donw by ansible user only on ansible server instance.
+
+*su - ansible
+*ssh <Host1 IP>  {shortest command to connect ot host instance}
+	provide Y/N ---Y ----> throws error msg--permission denied
+*exit
+*su - ansible
+*ssh ansible@<Host1 IP>  {full command to connect to host instance}
+ 	error msg--permission denied
+*exit(back to root user)
+*vi /etc/ssh/sshd_config ---(Note:-we need to modify thabove mentioned file & this process is called establishing connection bw server to all host computers)
+	press I
+	delete/uncomment # for permit root login
+	delete/uncomment # for password authentication
+	esc---:wq--enter
+*service sshd restart
+
+-------------------Host1 and Host2-------------------------
+*vi /etc/ssh/sshd_config ---(Note:-we need to modify thabove mentioned file & this process is called establishing connection bw server to all host computers)
+	press I
+	delete/uncomment # for permit root login
+	delete/uncomment # for password authentication
+	esc---:wq--enter
+*service sshd restart
+
+-------------------ansible server-------------------------
+*su - ansible (same for server and hosts)
+*ssh ansible@<Host1 IP>    or    ssh <Host1 IP>
+	provide PW:--Ansible1(hidden) and enter ----now connection is enabled and connected to host1
+*exit   -----(can be verified for host2 as well)
+
+
+*ssh <Host1 IP>
+	provide PW:--Ansible1(hidden) and enter ----now connection is enabled and connected to host1
+
+*ls
+*touch file1(can be verified in host1==> ls)
+*mkdir dir1 ( """"")
+*yum install tree -y ----throws error( you need to be root to perform this command)
+*sudo yum install tree -y ----(can be verified in host1==>which tree)
+*exit(back to server)
+*exit(back to root)
+---------------5thstep----ansible server-------------------------
+*ls
+*ls -a ===> we can see .ssh folder(can be verified in  all hosts)
+*su - ansible 
+*ls -a ===> we can see .ssh foldeer in server instance but not in host instances)
+
+Note:- ssh-keygen  ----after executing this command 2 files will be created in .ssh folder ---->1)id_rsa.pub(public file)
+												2)id_rsa(private file)
+*ls -a
+*ls
+*ll
+*ssh-keygen
+	enter file----just press enter
+	enter passphrase----- just press enter
+	enter repassphrase-----just press enter ----->default file,UN,PW,image will be condidered for these three steps.
+*ls -a
+*cd .ssh/
+*ls
+*cat id_rsa
+*cat id_rsa.pub
+
+---------------from Server to be performed to all hosts to be sent-------------------
+*ssh-copy-id ssh <Host IP>
+	provide pW----********* and enter
+
+Note:--PROS:-
+	1) while providing common password and username we can connect easily from server to host (ie:--only ssh IP instead of ssh username@IP) 
+	2) If common UN used across all PW. removing password can be chance .
+
 --------------------------------------------------------------------------------------------------
 
 
