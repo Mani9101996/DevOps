@@ -99,7 +99,8 @@ Syntax for calling host  ---1)<groupname>[0]--1st computer/host
 *yum install httpd -y-----(throws error msg->you need to be root to perform this command)
 *sudo yum install httpd -y-----now the software will be installed.
 *stop all instances and log off.
-*********************************07-12-2023************************************
+
+*********************************06-12-2023************************************
 *start all instances and login
 *sudo su (in all instances)
 
