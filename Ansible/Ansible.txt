@@ -345,14 +345,12 @@ skill: Elite
 
 vi target.yml
 	press i
---- # This is my demo playbook
-- hosts: webservers
-  tasks:
-    - name: installing httpd on webservers
-      action: yum pkg=httpd state=installed
-	
-    - name: installing mysql on dbservers
-      action: yum pkg=mysql state=installed
+--- # My First YAML playbook
+- hosts: demo 
+  user: ansible
+  become: yes # yes or no
+  connection: ssh # ssh or paramico
+  gather_facts: yes # yes or no
          esc---:wq--enter
 ansible-playbook target.yml(Run ansible-playbook to call the playbook)
 *ls
