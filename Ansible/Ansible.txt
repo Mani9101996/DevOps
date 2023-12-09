@@ -44,20 +44,23 @@ Install & Configure Ansible(Server)
 • Launch Amazon Linux (need not to install ansible in nodes)
 • yum install wget -y
 • wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-• yum install epel-release-latest-7.noarch.rpm -y
+• yum install ansible
 • sudo yum update -y
 • sudo yum install git python python-devel python-pip openssl ansible -y
 • ansible --version
 • sudo vi /etc/ansible/ansible.cfg & enable the below lines
 inventory = /etc/ansible/hosts
 sudo_user = root
+esc---:---wq---enter
+
+stop all instances and logout.
 --------------------------------------------------------------------------------------------------
 -----------------------------------04/12/2023-----------------------------------------------------
 *Start and login into 3 instances(ansible server,ansible 1 and ansible2)
 *ansible --version
 *cd /etc/ansible
 *ls
-*vi /etc/ansible/ansibble.cfg
+*vi /etc/ansible/ansible.cfg
 	press i
 	remove #(comment)  to default values--->inventory
 	remove #(comment)  to default values--->sudo_user
@@ -79,7 +82,7 @@ Syntax for calling host  ---1)<groupname>[0]--1st computer/host
 ******************Linux system administration steps( to be performed in all computers/instances-->ie:-ansible server,ansible1,ansible2)*****************
 *start all instances and login
 *useradd <username>
-*password <username>
+*passwd <username>
 	newpassword enter---******
 	retype newpassword-- ******
 *pwd
@@ -91,16 +94,18 @@ Syntax for calling host  ---1)<groupname>[0]--1st computer/host
 *yum install httpd -y-----(throws error msg->you need to be root to perform this command)
 *sudo yum install httpd -y----(throws msg to enter password -> enter password --> throws err msg(ansible is not in sudoers file.this incident will be reported.)
 *exit
-*visudo 
+*visudo ===>under all root to run anywhere any command
  	press i
 	type anywhere below command
 		ansible ALL=(ALL)  NOPASSWD: ALL 
 		esc---:wq--enter
+*su - ansible
 *yum install httpd -y-----(throws error msg->you need to be root to perform this command)
 *sudo yum install httpd -y-----now the software will be installed.
 *stop all instances and log off.
---------------------------------------------------------------------------------------------------
+
 *********************************06-12-2023************************************
+
 *start all instances and login
 *sudo su (in all instances)
 
@@ -115,7 +120,7 @@ Note:----SSH connection is default available but it doesnt mean we can connect f
 *su - ansible
 *ssh ansible@<Host1 IP>  {full command to connect to host instance}
  	error msg--permission denied
-*exit(back to root user)
+*exit(back to root ec2-user)
 *vi /etc/ssh/sshd_config ---(Note:-we need to modify thabove mentioned file & this process is called establishing connection bw server to all host computers)
 	press I
 	delete/uncomment # for permit root login
@@ -170,14 +175,14 @@ Note:- ssh-keygen  ----after executing this command 2 files will be created in .
 *cat id_rsa.pub
 
 ---------------from Server to be performed to all hosts to be sent-------------------
-*ssh-copy-id ssh <Host IP>
+*ssh-copy-id <Host IP>
 	provide pW----********* and enter
 
 Note:--PROS:-
 	1) while providing common password and username we can connect easily from server to host (ie:--only ssh IP instead of ssh username@IP) 
 	2) If common UN used across all PW. removing password can be chance .
 
---------------------------------------------------------------------------------------------------
+
 *********************************07-12-2023************************************
 *start  all instance and login
 *sudo su(in server and host)
@@ -254,7 +259,6 @@ We can create code in 3 ways:--1) Ad-hoc commands( simple linux commands)
 *ansible webservers -b  -a "which httpd"
 *ansible webservers -b  -a "service httpd status"
 *ansible webservers -b -m service -a "name=httpd state=started"====> to start service
-*ansible webservers -b -m -a "service httpd status"
 *ansible webservers -b -a "service httpd status"
 *ansible webservers -b -m service -a "name=httpd state=restarted"=====> to restart service
 *ansible webservers -b -m service -a "name=httpd state=stopped"=====> to stop service
@@ -281,8 +285,6 @@ below are default actions , so we need not to use "state". But for delete we nee
 *ansible all -m setup -a
 *ansible all -m setup
 *ansible all -m setup -a "filter=*IPV4*"
-*ansible all -m yum -a "pkg = git" -b
-*ansible all -b -m yum -a "pkg = git"
 *ansible all -b -m yum -a "pkg=git"
 *ansible all -a "which git" -b 
 
@@ -320,20 +322,43 @@ skill: Elite
 • Create a folder(playbooks) & go inside that(vi test.yml)
 • test.yml
 --------------------------------------------------------------------------------------
+*********************************09-12-2023************************************
+
+
+
 *ls
 *vi test.yml
-	--- # My First YAML playbook
-	- hosts: demo
-	   tasks:
-			- name: Install httpd on server
-			  action: yum pkg=httpd state=installed
-• Run ansible-playbook to call the playbook
-ansible-playbook test.yml
-	
+		press i
+	--- # This is my demo playbook
+- hosts: webservers
+  tasks:
+    - name: installing httpd on webservers
+      action: yum pkg=httpd state=installed
+
+    - name: installing mysql on dbservers
+      action: yum pkg=mysql state=installed
+	esc---:wq--enter
+
+*ansible-playbook test.yml(Run ansible-playbook to call the playbook)
 *ls
 *history
 
---------------------------------------------------------------------------------------
+vi target.yml
+	press i
+--- # This is my demo playbook
+- hosts: webservers
+  tasks:
+    - name: installing httpd on webservers
+      action: yum pkg=httpd state=installed
+	
+    - name: installing mysql on dbservers
+      action: yum pkg=mysql state=installed
+         esc---:wq--enter
+ansible-playbook target.yml(Run ansible-playbook to call the playbook)
+*ls
+*history
+--------------------------------------------------------------------------------------------------
+
 
 
 
