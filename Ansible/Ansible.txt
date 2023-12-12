@@ -345,24 +345,390 @@ skill: Elite
 
 vi target.yml
 	press i
---- # My First YAML playbook
-- hosts: demo 
-  user: ansible
-  become: yes # yes or no
-  connection: ssh # ssh or paramico
-  gather_facts: yes # yes or no
+--- # This is my demo playbook
+- hosts: webservers
+  tasks:
+    - name: installing httpd on webservers
+      action: yum pkg=httpd state=installed
+	
+    - name: installing mysql on dbservers
+      action: yum pkg=mysql state=installed
          esc---:wq--enter
-ansible-playbook target.yml(Run ansible-playbook to call the playbook)
+*ansible-playbook target.yml(Run ansible-playbook to call the playbook)
 *ls
 *history
 --------------------------------------------------------------------------------------------------
+*********************************09-12-2023************************************
+*start all instances and login 
+*ls 
+*vi tasks.yml (server)
+		press i 
+		--- # My tasks playbook
+- hosts: webservers
+  user: ansible
+  become: yes
+  connection: ssh
+
+
+  tasks:
+    - name: installing httpd software in webservers
+      action: yum name=httpd state=installed
+     
+	 esc+:wq and enter  
+-----------------------------------
+*sudo yum remove httpd -y  (verfying if httpd sw present in host 1 & 2 and if present we are removing)
+*which httpd
+------------------
+*ansible-playbook tasks.yml(Run ansible-playbook to call the playbook)
+------------------------------------------------
+now editing tasks.yml to handle errors.
+*vi tasks.yml
+	press i
+--- # My tasks playbook
+- hosts: webservers
+  user: ansible
+  become: yes
+  connection: ssh
+
+
+  tasks:
+    - name: installing httpd software in webservers
+      action: yum name=htt state=installed
+      ignore_errors: yes
+		
+		esc+:wq and enter  
+
+*ansible-playbook tasks.yml(Run ansible-playbook to call the playbook)
+ output:------------we are ignoring error in tasks and in play recap we see ignore=1 and failed =0 and ok=2(means server is able to access hosts and trying to install software in hosts)
+-------------------------------------------------
+*vi create-user.yml
+		press i
+--- # create user playbook
+- name: my test playbook
+  hosts: webservers
+  become: yes
+  connection: ssh
+  user: ansible
+  gather_facts: yes
+  tasks:
+    - name: creating a user
+      user: name=maniteja1996
+
+		esc+:wq and enter  
+
+*ansible-playbook create-user.yml(Run ansible-playbook to call the playbook)
+*ansible-playbook create-user.yml(Run ansible-playbook to call the playbook)
+ output:-- all shows in green colour means user already created.(idempotency concept.)
+-------------------------------------------------
+*ansible webservers -a "tail -1 /etc/passwd" (in server)  or tail -1 /etc/passwd (in host 1 and 2)
+*cp create-user.yml create-user-onemore.yml
+*vi create-user-onemore.yml
+	press i 
+--- # create user playbook
+- name: my test playbook
+  hosts: all
+  become: yes
+  connection: ssh
+  user: ansible
+  gather_facts: yes
+  tasks:
+    - name: creating a user
+      user: 
+		name: teja1996
+
+		esc+:wq and enter  
+		
+*ansible-playbook create-user-onemore.yml
+output:--in yellow colour means successfully executed.
+*-------------------------------------------------
+**ansible webservers -a "tail -1 /etc/passwd" (in server)  or tail -1 /etc/passwd (in host 1 and 2)
+-------------------------------------------------
+*vi create-file.yml
+ press i
+--- # file creation
+- hosts: webservers
+  user: ansible
+  connection: ssh
+  become: yes
+  gather_facts: yes
+
+
+  tasks:
+    - name: creating a file
+      file:
+        path: /home/ansible/demofile
+        state: touch
+			esc+:wq and enter  
+
+*ansible-playbook create-file.yml
+output:--in yellow colour means successfully executed.
+*ansible-playbook create-file.yml
+output:--in yellow colour means successfully executed.(here we used simple linux commands and linux commands doesnt follow idempotency concept)
+-------------------------------------------------
+* vim create-dir.yml
+	pressi
+--- # directory creation
+- name: test playbook
+  hosts: webservers
+  user: ansible
+  connection: ssh
+  become: yes
+
+  tasks:
+    - name: creating a directory
+      file:
+        path: /home/ansible/abc123xyz
+        state: directory
+		esc+:wq and enter 
+
+*ansible-playbook create-dir.yml
+output:--in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+*vi delete-file.yml
+      press i
+---
+- hosts: webservers
+  become:  yes
+  user: ansible
+  connection: ssh
+
+  tasks:
+   - name: deleting a file
+     file:
+       path:  /home/ansible/demofile
+       state: absent
+
+	  		esc+:wq and enter 
+
+*ansible-playbook delete-file.yml
+output:--in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+*vi delete-dir.yml
+      press i
+---
+- hosts: webservers
+  become:  yes
+  user: ansible
+  connection: ssh
+
+  tasks:
+   - name: deleting a directory
+     file:
+       path:  /home/ansible/dir1
+       state: absent
+
+	  		esc+:wq and enter 
+
+*ansible-playbook delete-file.yml
+output:--in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+*vi index.html
+	press i
+	
+	welcome to devops course by mr maniteja.
+	esc+:wq and enter 
+
+now copy this file to host 1 and 2 using play book.
+* vi copy-file.yml
+		press i 
+--- # copying a file
+- hosts: all
+  user: ansible
+  become: true
+  connection: ssh
+
+  tasks:
+    - name: copying a file form server to hosts
+      copy:
+        src: /home/ansible/index.html
+        dest: /home/ansible
+        owner: teja1996
+	  		esc+:wq and enter 
+			
+			
+*ansible-playbook delete-file.yml
+output:--in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+*vi install-package.yml
+			press i
+--- # software installation
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: installing docker software in hosts
+      yum:
+        name: docker
+        state: installed
+
+    - name: installing jenkins software in hosts
+      yum:
+        name: jenkins
+        state: present
+	  		esc+:wq and enter 
+			
+*ansible-playbook install-package.yml
+output:--in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+*vi remove-package.yml
+			press i
+--- # uninstalling software 
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: uninstalling docker software in hosts
+      yum:
+        name: docker
+        state: absent
+		
+	  		esc+:wq and enter 
+
+*ansible-playbook remove-package.yml
+output:--in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+*vi install-software.yml
+ press i 
+---
+- hosts: all
 
 
 
 
+  tasks:
+    - name: install a s/w
+      yum:
+       name: java
+       state: latest
+	  		
+			esc+:q! and enter 
+*ansible-playbook install-software.yml
+output:--error  FAILED! => {"changed": true, "changes": {"installed": ["java"], "updated": []}, "msg": "You need to be root to perform this command.\n", "rc": 1, "results": ["Loaded plugins: extras_suggestions, langpacks, priorities, update-motd\n"]}
+
+
+to sovle above error execute below command
+*ansible-playbook install-software.yml -b
+
+or edit and add as shown below 
+
+---
+- hosts: all
+  connection: ssh			(this line to be added optionally)
+  user: ansible				(this line to be added optionally)
+  become: true             (this line to be added mandetorily)
 
 
 
+  tasks:
+    - name: install a s/w
+      yum:
+       name: java
+       state: latest
+
+			esc+:wq and enter 
+
+*ansible-playbook install-software.yml
+output:-- in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+******using variable concept********
+
+*vi variable.yml
+	press i
+--- # my variable section
+- hosts: all
+  become: true
+
+  vars:
+   pkgname: httpd
+
+  tasks:
+   - name: install httpd on webservers
+     action: yum name='{{pkgname}}' state=installed
+
+			esc+:wq and enter 
+			
+*ansible-playbook variable.yml
+output:-- in yellow colour means successfully executed.(can even verify in host 1 and 2)
+-------------------------------------------------
+*vi variables.yml
+	press i
+---
+- hosts: all
+  user: ansible
+  connection: ssh
+  become: yes
+
+
+  vars:
+    user: sunny
+
+
+  tasks:
+    - name: creating a user {user}
+      user:
+        name: "{{user}}"
+		
+					esc+:wq and enter 
+
+			
+*ansible-playbook variables.yml
+output:-- in yellow colour means successfully executed.(can even verify in ansible webservers -a "tail -1 /etc/passwd" in server and tail -1 /etc/passwd in host1&2)
+---------------------------------------------------------------------------------------------------------------------------------------------------
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
 
 
 
