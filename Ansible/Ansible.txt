@@ -358,7 +358,7 @@ vi target.yml
 *ls
 *history
 --------------------------------------------------------------------------------------------------
-*********************************09-12-2023************************************
+*********************************12-12-2023************************************
 *start all instances and login 
 *ls 
 *vi tasks.yml (server)
@@ -678,25 +678,216 @@ output:-- in yellow colour means successfully executed.(can even verify in host 
 *ansible-playbook variables.yml
 output:-- in yellow colour means successfully executed.(can even verify in ansible webservers -a "tail -1 /etc/passwd" in server and tail -1 /etc/passwd in host1&2)
 ---------------------------------------------------------------------------------------------------------------------------------------------------
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
+*********************************13-12-2023************************************
+
+*start all instances and login through mobaXterm
+*sudo su
+*su - ansible
+
+====> handlers section
+	• Consists the ability to notify when something happens
+	• Also call another set of tasks
+	
+*vi handlers.yml
+		press i
+--- # my handlers playbook
+- hosts: webservers
+  name: handlers playbook
+  user: ansible
+  become: true
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: installing httpd software
+      action: yum name=httpd state=present
+     
+    - name: start httpd service
+      action: service name=httpd state=started
+
+esc+:wq and enter
+
+*ansible-playbook handlers.yml
+output:-- successfully executed
+
+  ---------------------------------------------------------
+
+Now edit the code  by stopping service in 1 and 2 as below
+
+		press i
+--- # my handlers playbook
+- hosts: webservers
+  name: handlers playbook
+  user: ansible
+  become: true
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: installing httpd software
+      action: yum name=httpd state=present
+      notify: start httpd service
+
+  handlers:
+    - name: start httpd service
+      action: service name=httpd state=started
+
+esc+:wq and enter
+
+*ansible-playbook handlers.yml
+output:-- task 2 didnt executed because task1 is already installed
+
+Now delete software and again execute
+
+*ansible-playbook handlers.yml
+output:-- successfully executed
+---------------------------------------------------------
+====>Dry Run
+
+• Check whether the playbook is formatted correctly
+• Test how the playbook is going to behave without running the 
+tasks
+
+
+*ansible-playbook webserver.yml --check
+
+---------------------------------------------------------
+*ansible all -a "yum remove httpd -y" -b 
+
+*vi two-tasks.yml
+		press i
+--- # my two-tasks playbook
+- name: my test playbook
+  hosts: webservers
+  connection: ssh
+  become: yes
+  user: ansible
+
+  tasks:
+    - name: installing package
+      yum:
+        name: httpd
+        state: present
+
+    - name: start service
+      service:
+          name: httpd
+          state: started 
+		  
+esc+:wq and enter
+
+*ansible-playbook two-tasks.yml
+output:-- successfully executed
+
+
+now edit the code as below 
+
+*vi two-tasks.yml
+		press i
+--- # my two-tasks playbook
+- name: my test playbook
+  hosts: webservers
+  connection: ssh
+  become: yes
+  user: ansible
+
+  tasks:
+    - name: remove package
+      yum:
+        name: httpd
+        state: absent
+
+    - name: stop service
+      service:
+          name: httpd
+          state: stopped
+		  
+		  esc+:wq and enter
+
+*ansible-playbook two-tasks.yml
+output:-- throws error ==> could not see/find the requested service on 2nd task
+---------------------------------------------------------
+====> conditionals section
+• Few tasks might be needed to execute only on specific scenario
+• When statement 
+Sometimes you will want to skip a particular step on a particular host
+
+*vi conditionals.yml
+       press i
+	   
+--- # When playbook example
+- hosts: demo
+user: ansible
+become: yes
+connection: ssh
+tasks:
+- name: Install apache for debian
+command: apt-get -y install apache2
+when: ansible_os_family == "Debian"
+- name: Install apache for redhat
+command: yum -y install httpd
+when: ansible_os_family == "RedHat“ 
+
+ esc+:wq and enter
+
+*ansible-playbook conditionals.yml
+output:-- we see task1 is skipping because of not matching OS
+---------------------------------------------------------
+*ansible all -m setup
+
+*vi onemore-conditionals.yml 
+ press i 
+--- # my onemore-conditionals playbook
+- name: conditionals playbook 2
+  hosts: webservers
+  connection: ssh
+  user: ansible
+  become: yes
+  gather_facts: yes
+
+
+  tasks:
+    - name: install httpd package
+      yum:
+       name: httpd
+       state: installed
+      when: ansible_os_family == "RedHat"
+
+    - name: start httpd service
+      service:
+       name: httpd
+       state: started
+      when: ansible_os_family == "RedHat"
+
+    - name: install apache2 package
+      apt:
+       name: apache2
+       state: present
+      when: ansible_os_family == "Debian"
+
+    - name: start apache2 service
+      service:
+       name: apache2
+       state: started
+      when: ansible_os_family == "Debian"
+
+    - name: copy index.html file into hosts
+      copy:
+       src: /home/ansible/index.html
+       dest: /var/www/html
+       owner: teja1996
+       mode: 0777
+
+
+ esc+:wq and enter
+
+*ansible all -a "cat /etc/passwd"
+
+delete software in hosts if installed----- sudo yum remove httpd -y 
+
+*ansible-playbook onemore-conditionals.yml
+output:-- we see task 3 and 4 are skipping and also copying file in hosts systems( this can be verified by pasting public IPv4 address in google)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *
 *
 *
