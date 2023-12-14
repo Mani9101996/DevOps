@@ -888,14 +888,181 @@ delete software in hosts if installed----- sudo yum remove httpd -y
 *ansible-playbook onemore-conditionals.yml
 output:-- we see task 3 and 4 are skipping and also copying file in hosts systems( this can be verified by pasting public IPv4 address in google)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*
-*
-*
-*
-*
-*
-*
-*
+**********************************14-12-2023************************************
+
+======> loops:
+
+• Often you’ll want to do many things in one task, such as create a lot of users, install a lot of 
+packages, or repeat a polling step until a certain result is reached
+
+
+*start all instances and login through mobaXterm
+*sudo su
+*su - ansible
+
+* vi install-multiple-packages.yml
+			press i 
+--- # my install-multiple-packages playbook
+- hosts: webservers
+  name: my loops playbook
+  become: yes
+  connection: ssh
+  user: ansible
+  
+  tasks:
+	- name: install packages
+	  yum: 
+		name: ['git','httpd','which','docker','tree','wget','java']
+		state: present
+		
+		 esc+:wq and enter
+		 
+Note:--- remove all mentioned pkgs and execute
+	
+	*ansible-playbook install-multiple-packages.yml
+output:-- success fully executued
+------------------------------------------other syntax for the same------------------------------
+*vi loops-packages.ymi
+	press i 
+--- # my loops playbook
+- hosts: webservers
+  name: my loops playbook
+  become: yes
+  connection: ssh
+  user: ansible
+  
+  tasks:
+	- name: installing multiple s/w
+	  yum: name='{{item}}' state=installed
+	  with_items:
+		- httpd
+		- git
+		- mysql
+		- docker 
+		- java
+		- tree
+		
+  esc+:wq and enter
+		 
+	
+*ansible-playbook loops-packages.yml
+output:-- all shows in green colour as all softwares are already installed.
+  Note:--- remove all mentioned pkgs and execute
+*ansible-playbook install-multiple-packages.yml
+output:-- success fully executued
+-----------------------------------------------------------------------------------------------
+* vi loops-users.yml
+	press i 
+--- # Loop Playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+   - name: add a list of users
+     user: name='{{ item }}' state=present
+     with_items:
+		- Raj
+		- Sai
+		- Hari
+		
+  esc+:wq and enter
+		 
+	
+*ansible-playbook loops-packages.yml
+output:-- success fully executued
+
+-----------------------------------------------------------------------------------------------
+*vi user.yml
+	press i 
+user1: maniteja
+user2: saiteja 
+  
+  esc+:wq and enter
+  
+* vi user-vars.yml
+	press i 
+
+--- # my user-vars Playbook
+- hosts: demo
+	user: ansible
+	become: yes
+	connection: ssh
+	
+	vars-files:
+		- user.yml
+	
+	tasks:
+		- name: creating user {{user1}}
+		  user: 
+		    name: "{{user1}}"
+			
+		- name: creating user {{user2}}
+		  user: 
+		    name: "{{user2}}"
+
+esc+:wq and enter
+		 
+	
+*ansible-playbook loops-packages.yml
+output:-- success fully executued----can verify in hosts by """"cat /etc/passwd""""
+
+-----------------------------------------------------------------------------------------------
+
+=====>>> at the time of executing playbook if we want to change and pkg or name we can use below commands.
+
+*ansible-playbook loops-packages.yml -e "user2="raju" -----shortest command
+
+				***********or***********
+
+*ansible-playbook loops-packages.yml --extra-vars "user2="raju"   ----full command
+
+-----------------------------------------------------------------------------------------------
+*vi sample.yml
+press i 
+--- # my sample Playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+	- name: creating file with ansible playbook
+	  file: path=/tmp/teja111file state=touch
+	  
+	- name: creating folder with ansible playbook
+	  file: path=/tmp/teja123folder state=directory
+	
+	- name: copying a  file to hosts with ansible playbook
+	  file: src: ./Adanifile  dest= /home/ansible
+	  
+	  esc+:wq and enter
+		 
+	
+*ansible-playbook sample.yml
+output:-- success fully executued
+
+-----------------------------------------------------------------------------------------------
+======> loops:
+
+• Ansible allows keeping sensitive data such as passwords or keys in encrypted files, rather 
+than as plaintext in your playbooks
+
+• Creating a new Encrypted playbook (Put ---) (Verify file permissions) (Open playbook now)
+ansible-vault create playbook.yml
+
+• Edit the Encrypted playbook
+ansible-vault edit playbook.yml
+
+• Change the password
+ansible-vault rekey playbook.yml
+
+• Decrypt the playbook & verify by opening playbook
+ansible-vault decrypt playbook.yml
+
+• Encrypt an existing playbook (verify by opening playbook)
+ansible-vault encrypt playbook.yml
+
+-----------------------------------------------------------------------------------------------
 *
 *
 *
