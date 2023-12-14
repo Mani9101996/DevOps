@@ -952,7 +952,8 @@ output:-- all shows in green colour as all softwares are already installed.
 output:-- success fully executued
 -----------------------------------------------------------------------------------------------
 * vi loops-users.yml
-	press i 
+	
+press i 
 --- # Loop Playbook
 - hosts: demo
   user: ansible
