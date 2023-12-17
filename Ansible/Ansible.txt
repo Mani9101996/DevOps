@@ -44,7 +44,8 @@ Install & Configure Ansible(Server)
 • Launch Amazon Linux (need not to install ansible in nodes)
 • yum install wget -y
 • wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-• yum install ansible
+•ls
+•yum install epel-release-latest-7.noarch.rpm.1
 • sudo yum update -y
 • sudo yum install git python python-devel python-pip openssl ansible -y
 • ansible --version
@@ -329,7 +330,7 @@ skill: Elite
 *ls
 *vi test.yml
 		press i
-	--- # This is my demo playbook
+	--- # This is my all playbook
 - hosts: webservers
   tasks:
     - name: installing httpd on webservers
@@ -345,7 +346,7 @@ skill: Elite
 
 vi target.yml
 	press i
---- # This is my demo playbook
+--- # This is my all playbook
 - hosts: webservers
   tasks:
     - name: installing httpd on webservers
@@ -456,7 +457,7 @@ output:--in yellow colour means successfully executed.
   tasks:
     - name: creating a file
       file:
-        path: /home/ansible/demofile
+        path: /home/ansible/allfile
         state: touch
 			esc+:wq and enter  
 
@@ -495,7 +496,7 @@ output:--in yellow colour means successfully executed.(can even verify in host 1
   tasks:
    - name: deleting a file
      file:
-       path:  /home/ansible/demofile
+       path:  /home/ansible/allfile
        state: absent
 
 	  		esc+:wq and enter 
@@ -591,7 +592,7 @@ output:--in yellow colour means successfully executed.(can even verify in host 1
 *ansible-playbook remove-package.yml
 output:--in yellow colour means successfully executed.(can even verify in host 1 and 2)
 -------------------------------------------------
-*vi install-software.yml
+*		
  press i 
 ---
 - hosts: all
@@ -816,7 +817,7 @@ Sometimes you will want to skip a particular step on a particular host
        press i
 	   
 --- # When playbook example
-- hosts: demo
+- hosts: all
 user: ansible
 become: yes
 connection: ssh
@@ -922,7 +923,7 @@ Note:--- remove all mentioned pkgs and execute
 	*ansible-playbook install-multiple-packages.yml
 output:-- success fully executued
 ------------------------------------------other syntax for the same------------------------------
-*vi loops-packages.ymi
+*vi loops-packages.yml
 	press i 
 --- # my loops playbook
 - hosts: webservers
@@ -952,10 +953,9 @@ output:-- all shows in green colour as all softwares are already installed.
 output:-- success fully executued
 -----------------------------------------------------------------------------------------------
 * vi loops-users.yml
-	
-press i 
+	press i 
 --- # Loop Playbook
-- hosts: demo
+- hosts: all
   user: ansible
   become: yes
   connection: ssh
@@ -970,7 +970,7 @@ press i
   esc+:wq and enter
 		 
 	
-*ansible-playbook loops-packages.yml
+*ansible-playbook loops-users.yml
 output:-- success fully executued
 
 -----------------------------------------------------------------------------------------------
@@ -985,12 +985,12 @@ user2: saiteja
 	press i 
 
 --- # my user-vars Playbook
-- hosts: demo
+- hosts: all
 	user: ansible
 	become: yes
 	connection: ssh
 	
-	vars-files:
+	vars_files:
 		- user.yml
 	
 	tasks:
@@ -1005,24 +1005,24 @@ user2: saiteja
 esc+:wq and enter
 		 
 	
-*ansible-playbook loops-packages.yml
+*ansible-playbook user-vars.yml
 output:-- success fully executued----can verify in hosts by """"cat /etc/passwd""""
 
 -----------------------------------------------------------------------------------------------
 
 =====>>> at the time of executing playbook if we want to change and pkg or name we can use below commands.
 
-*ansible-playbook loops-packages.yml -e "user2="raju" -----shortest command
+*ansible-playbook user-vars.yml -e "user2=raju" -----shortest command
 
 				***********or***********
 
-*ansible-playbook loops-packages.yml --extra-vars "user2="raju"   ----full command
+*ansible-playbook user-vars.yml --extra-vars "user2=raju"   ----full command
 
 -----------------------------------------------------------------------------------------------
 *vi sample.yml
 press i 
 --- # my sample Playbook
-- hosts: demo
+- hosts: all
   user: ansible
   become: yes
   connection: ssh
