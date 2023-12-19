@@ -1064,31 +1064,158 @@ ansible-vault decrypt playbook.yml
 ansible-vault encrypt playbook.yml
 
 -----------------------------------------------------------------------------------------------
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
+**********************************19-12-2023************************************
 
+start and login to instance through mobaXterm software
+
+*sudo yum update -y  ====> host and server
+*su - ansible 
+*ls
+ 
+Note:-- remove java software of present previously in hosts
+		* sudo yum remove java* -y
+		* which java
+
+*vi install-java-tomcat.yml 
+			press i
+--- # my java-tomcat playbook
+- hosts: all
+  name: java-tomcat playbook
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: install java software on redhat
+      ansible.builtin.yum:
+        name: java
+        state: installed
+      when: ansible_os_family == "RedHat"
+
+    - name: install java software on debian
+      ansible.builtin.apt:
+        name: default-jdk
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: download tomcat software
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.17/bin/apache-tomcat-10.1.17.tar.gz
+        dest: /opt
+
+    - name: extract tar and gzip from downloaded software
+      ansible.builtin.unarchive:
+        src: /opt/apache-tomcat-10.1.17.tar.gz
+        dest: /opt
+        remote_src: yes
+
+    - name: providing executable permissions
+      file:
+        path: /opt/apache-tomcat-10.1.17/bin/startup.sh
+        mode: 0777
+
+    - name: start tomcatservice
+      shell: nohup ./startup.sh
+      args:
+        chdir: /opt/apache-tomcat-10.1.17/bin
+
+
+  esc+:wq and enter
+*ansible-playbook install-java-tomcat.yml
+output:-- success fully executued
+
+
+Note:--security group ---edit inbound rules --- add type --custom TCP
+													port --8080
+													src --ipv4 Anywhere and save
+
+Note:-- copy host 1 and 2 publicIPs:8080 in new tabs and we can see tom cat is installed in instance(webserver)
+
++==========host 1 and 2===========+
+*cd /opt 
+*ls
+*cd software/
+*ls
+*cd bin/  =====> permission denied 
+*sudo cd bin/
+*ls =====we cant see startup.sh file----
+*exit ( backt o root--ec2-user)
+*cd /opt/ 
+*ls 
+*cd sw/
+*ls 
+*cd bin/
+*ls ====> we can see startup.sh file 
+*su -ansible 
+
+*sudo yum remove java* -y 
+*which java 
+*cd /opt 
+*ls 
+*rm -rf sw sw.tar.gz 
+*ls 
+*cd .. 
+*cd /home/ansible
+
++==========server===========+
+*vi install-java-jenkins.yml 
+*     press i 
+--- # install java and jenkins playbook
+- hosts: all
+  name: install java and jenkins playbook
+  become: yes
+  user: ansible
+  connection: ssh
+
+  tasks:
+    - name: install java software
+      yum:
+        name: java
+        state: present
+
+    - name: install wget command
+      yum:
+        name: wget
+        state: installed
+
+    - name: download jenkins software
+      get_url:
+        url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+
+    - name: download jenkins key
+      rpm_key:
+        state: present
+        key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+    - name: install jenkins software
+      yum:
+        name: jenkins
+        state: present
+
+    - name: start service jenkins
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+		
+		esc+:wq and enter
+*ansible-playbook install-java-jenkins.yml
+output:-- success fully executued
+		
+
+*service jenkins start====> error 
+*sudo service systemctl start jenkins ====> error 
+*java --version 
+*sudo yum install java-10* -y 
+*sudo service systemctl start jenkins ====> error 
+
+stop all instance and logout from AWS website
+*
+*
+*
+*
+*
 
 
 
