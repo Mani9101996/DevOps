@@ -1,0 +1,5 @@
+--- # tasks
+- name: installing httpd into hosts
+  yum: pkg=httpd state=latest
+
+
