@@ -1,0 +1,13 @@
+--- # my install-multiple-packages playbook
+- hosts: webservers
+  name: my loops playbook
+  become: yes
+  connection: ssh
+  user: ansible
+  
+  tasks:
+   - name: install packages
+     yum: 
+        name: ['git','httpd','which','docker','tree','wget','java']
+        state: installed
+

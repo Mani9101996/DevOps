@@ -1,0 +1,13 @@
+---
+- hosts: all
+  connection: ssh			(this line to be added optionally)
+  user: ansible				(this line to be added optionally)
+  become: true             (this line to be added mandetorily)
+
+
+
+  tasks:
+    - name: install a s/w
+      yum:
+       name: java
+       state: latest

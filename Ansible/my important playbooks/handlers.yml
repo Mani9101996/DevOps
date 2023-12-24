@@ -1,0 +1,16 @@
+--- # my handlers playbook
+- hosts: webservers
+  name: handlers playbook
+  user: ansible
+  become: true
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: installing httpd software
+      action: yum name=httpd state=present
+      notify: start httpd service
+
+  handlers:
+    - name: start httpd service
+      action: service name=httpd state=started

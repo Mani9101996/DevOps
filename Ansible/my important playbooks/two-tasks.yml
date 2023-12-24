@@ -1,0 +1,17 @@
+--- # my two-tasks playbook
+- name: my test playbook
+  hosts: webservers
+  connection: ssh
+  become: yes
+  user: ansible
+
+  tasks:
+    - name: remove package
+      yum:
+        name: httpd
+        state: absent
+
+    - name: stop service
+      service:
+          name: httpd
+          state: stopped

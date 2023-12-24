@@ -1,0 +1,17 @@
+--- # my user-vars Playbook
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+
+  vars_files:
+    - user.yml
+            
+  tasks:
+    - name: creating user {{user1}}
+      user: 
+        name: "{{user1}}"
+
+    - name: creating user {{user2}}
+      user: 
+        name: "{{user2}}"

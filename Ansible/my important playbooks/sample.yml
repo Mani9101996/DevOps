@@ -1,0 +1,15 @@
+--- # my sample Playbook
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+        - name: creating file with ansible playbook
+          file: path=/tmp/teja111file state=touch
+
+        - name: creating folder with ansible playbook
+          file: path=/tmp/teja123folder state=directory
+
+        - name: copying a  file to hosts with ansible playbook
+          file: src: ./Adanifile  dest= /home/ansible
+

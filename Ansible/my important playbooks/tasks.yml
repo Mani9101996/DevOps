@@ -1,0 +1,11 @@
+--- # My tasks playbook
+- hosts: webservers
+  user: ansible
+  become: yes
+  connection: ssh
+
+
+  tasks:
+    - name: installing httpd software in webservers
+      action: yum name=htt state=installed
+      ignore_errors: yes

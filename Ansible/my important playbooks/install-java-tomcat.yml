@@ -1,0 +1,41 @@
+--- # my java-tomcat playbook
+- hosts: all
+  name: java-tomcat playbook
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: install java software on redhat
+      ansible.builtin.yum:
+        name: java
+        state: installed
+      when: ansible_os_family == "RedHat"
+
+    - name: install java software on debian
+      ansible.builtin.apt:
+        name: default-jdk
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: download tomcat software
+      get_url: 
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.17/bin/apache-tomcat-10.1.17.tar.gz
+        dest: /opt
+      
+    - name: extract tar and gzip from downloaded software
+      ansible.builtin.unarchive:
+        src: /opt/apache-tomcat-10.1.17.tar.gz
+        dest: /opt
+        remote_src: yes
+
+    - name: providing executable permissions
+      file:
+        path: /opt/apache-tomcat-10.1.17/bin/startup.sh
+        mode: 0777
+
+    - name: start tomcatservice
+      shell: nohup ./startup.sh
+      args:
+        chdir: /opt/apache-tomcat-10.1.17/bin
+

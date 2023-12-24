@@ -1,0 +1,11 @@
+---
+- hosts: webservers
+  become:  yes
+  user: ansible
+  connection: ssh
+
+  tasks:
+   - name: deleting a directory
+     file:
+       path:  /home/ansible/dir1
+       state: absent

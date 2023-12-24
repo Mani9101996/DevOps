@@ -1,0 +1,15 @@
+---
+- hosts: all
+  user: ansible
+  connection: ssh
+  become: yes
+
+
+  vars:
+    user: sunny
+
+
+  tasks:
+    - name: creating a user {user}
+      user:
+        name: "{{user}}"

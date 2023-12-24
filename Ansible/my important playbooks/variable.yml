@@ -1,0 +1,10 @@
+--- # my variable section
+- hosts: all
+  become: true
+
+  vars:
+   pkgname: httpd
+
+  tasks:
+   - name: install httpd on webservers
+     action: yum name='{{pkgname}}' state=installed

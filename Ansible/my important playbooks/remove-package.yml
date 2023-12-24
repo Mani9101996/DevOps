@@ -1,0 +1,11 @@
+--- # uninstalling software 
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: uninstalling docker software in hosts
+      yum:
+        name: docker
+        state: absent

@@ -1,0 +1,10 @@
+--- # This is my demo playbook
+- hosts: webservers
+  become:true
+  
+  tasks:
+    - name: installing httpd on webservers
+      action: yum pkg=httpd state=installed
+	
+    - name: installing mysql on dbservers
+      action: yum pkg=mysql state=installed

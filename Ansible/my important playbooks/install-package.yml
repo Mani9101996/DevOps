@@ -1,0 +1,16 @@
+--- # software installation
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: installing docker software in hosts
+      yum:
+        name: docker
+        state: installed
+
+    - name: installing jenkins software in hosts
+      yum:
+        name: jenkins
+        state: present
