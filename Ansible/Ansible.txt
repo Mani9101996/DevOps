@@ -1211,18 +1211,72 @@ output:-- success fully executued
 *sudo service systemctl start jenkins ====> error 
 
 stop all instance and logout from AWS website
-*
-*
-*
-*
-*
 
+-----------------------------------------------------------------------------------------------
+**********************************24-12-2023************************************
+*start and login into all instance 
+*sudo su 
+*su - ansible 
+*ls 
+*mkdir -p playbook/roles/<anyname>/tasks
+*tree 
+*sudo yum install tree -y 
+*tree 
+*cd playbook/ 
+*tree 
+*touch roles/testrole/tasks/main.yml 
+*tree 
+*touch master.yml 
+*vi roles/testrole/tasks/main.yml 
+		press i 
+	--- # tasks
+	  - name: installing httpd into hosts 
+	    yum: pkg=httpd state=latest
+		esc+:wq enter
+*vi master.yml 
+*       press i 
+--- # hosts: all 
+  - hosts: all 
+    user: ansible
+	become: yes 
+	connection: ssh
+	 
+	roles:
+	    - testrole/tasks/main
+		esc+:wq enter
+*ansible-playbook master.yml  (Note:-- remove httpd sw from hosts before executing this command)
+output:--successfully executed can verify in hosts:::-----"which httpd"
 
+*ls
+*cd ..
+*mkdir myplaybooksansible
+*ls 
+*mv *.yml myplaybooksansible
+*ls 
+*ls myplaybooksansible
+*ls 
+*mv <other files and foleders> myplaybooksansible
+*ls 
+*cd myplaybooksansible
+*ls
+*ls -a 
+*git init 
+*ls -a  
+*git config --global user.name "Mani9101996"
+*git config --global user.email "maniteja9101996@gmail.com"
+*git config --list
+*git status
+*git add . 
+*git status
+*git commit -m "my important playbooks"
+*git remote add origin "https://github.com/Mani9101996/DevOps.git"
+*git push -u origin master 
+     provide username:
+	 provide password:
+*git log 
+*git show and to come out press "q"
 
-
-
-
-
+-----------------------------------------------------------------------------------------------
 
 
 
