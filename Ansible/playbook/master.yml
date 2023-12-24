@@ -1,0 +1,8 @@
+--- # master playbook.
+- hosts: all
+  user: ansible
+  connection: ssh
+  become: true
+
+  roles: 
+    - testrole
